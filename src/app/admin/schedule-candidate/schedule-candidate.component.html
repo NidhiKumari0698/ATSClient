@@ -1,0 +1,260 @@
+<div class="container upperdiv">
+  <div class="row">
+ <div class="col-sm-6">
+    
+        <div class="form-group">
+            <label>Select Job</label>
+              <select class="form-control" id="candidate_email" (change)="getcandidate($event)" formControlName="posting_title">
+                <option *ngFor="let data of jobDatas" [value]="data.posting_title" >{{data.posting_title}}</option>
+              </select>
+         </div>
+     
+ </div>
+ <div class="col-sm-6" *ngIf="value">
+    <div class="form-group">
+        <label>Select Candidate</label>
+          <select class="form-control" id="candidate_email" (change)="showCandidateDetails($event)" formControlName="data" >
+            <option *ngFor="let data of arr" [value]="data" >{{data}}</option>
+          </select>
+    </div>
+</div>
+<div *ngIf="notvalue">
+    <label></label>
+<p>No more candidates are available</p>
+</div>
+</div>
+  <div>
+   <!-- CODE FOR SHOWING CANDIDATE DETAILS -->
+       <div class="caninfo" *ngIf="value2"> 
+        <p>{{singleJobAndCand.candidateEmail}}</p>
+        <p>Previous Details</p>
+        <table class="table formarea" id="myTable" *ngIf="valPrevRes">
+            <thead>
+                <th>RoundNo</th>
+                <th>IEmail</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Response</th>
+              </thead>
+            <tbody>
+                  <tr *ngFor="let data of previousResponse">
+                    <td>{{data.round}}</td>
+                    <td>{{data.interviewerEmail}}</td>
+                    <td>{{data.date}}</td>
+                    <td>{{data.time}}</td>
+                    <td>{{data.response}}</td>
+                  </tr>
+                </tbody>
+        </table> 
+        
+        <p *ngIf="!valPrevRes">This candidate is new</p>
+        <p>RecentInfo</p>
+        <table class="table formarea" id="myTable" *ngIf="valRecRes">
+            <thead>
+                <th>RoundNo</th>
+                <th>IEmail</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Response</th>
+              </thead>
+              
+            <tbody>
+                  <tr *ngFor="let data of recentResponse">
+                    <td>{{data.round}}</td>
+                    <td>{{data.interviewerEmail}}</td>
+                    <td>{{data.date}}</td>
+                    <td>{{data.time}}</td>
+                    <td>{{data.response}}</td>
+                  </tr>
+                </tbody>
+        </table> 
+        <p *ngIf="!valRecRes">This candidate has no recent response</p>
+        <input type="button" value="assign" (click)="assign(singleJobAndCand)" class="btn">
+        <input type="button" value="select" (click)="select(singleJobAndCand)" class="btn btn-success">
+        <input type="button" value="reject" (click)="reject(singleJobAndCand)" class="btn btn-danger">
+
+      </div>
+               <!-- CODE FOR SHOWING ASSIGN INTERVIEWER FIELDS -->
+ <div class="container formarea" *ngIf="assigntableshow">
+  <form [formGroup]="rForm" class="form" (ngSubmit)="addPost(rForm.value)">
+      <div class="form-group middle">
+       <h4><b> Assign Interviewer</b></h4>
+      </div>
+       <div class="form-group">
+         <div class="row">
+           <div class="col-sm-6">
+              <label class="labels">Select Role</label>
+              <select class="form-control" id="interviewer_email"(change)="getInterviewerByRole($event)" formControlName="interviewer_role">
+              <option *ngFor="let data of uniqueRole"[value]="data">{{data}}</option>
+              </select>
+           </div>
+           <div class="col-sm-6" *ngIf="roleClicked">
+              <label class="labels">Select Interviewer</label>
+              <select class="form-control" id="interviewer_email" formControlName="interviewer_email">
+              <option *ngFor="let data of InterviewerByRole"[value]="data.email">{{data.email}}</option>
+              </select>
+              <div class="alert alert-danger" *ngIf="!rForm.controls['interviewer_email'].valid && rForm.controls['interviewer_email'].touched">This
+                          is required!
+              </div>
+           </div>
+           <div *ngIf="notroleClicked"><p>No Interviewer available for this candidate on this role </p></div>
+         </div>
+          
+      </div>
+      <div  class="form-group">  
+          <label class="labels">Scheduled Date & Time</label>
+          <div class="row">
+                  <div class="col-md-6">
+                      <input type="date" formControlName="date" class="form-control">
+                  </div>
+                  <div class="col-md-6">
+                          <input type="time" formControlName="time" class="form-control">
+                   </div>
+           </div>
+          <div class="alert alert-danger" *ngIf="!rForm.controls['time'].valid && rForm.controls['time'].touched && 
+          !rForm.controls['date'].valid && rForm.controls['date'].touched">This
+                      is required!
+          </div>
+      </div>
+      <div class="form-group">
+          <input type="submit" class="btn btn-submit " value="submit"
+                   [disabled]="!rForm.valid"
+                  [class.disablepointer]="!rForm.valid">
+      </div>
+      <div class="form-group">
+          <input type="reset" class="btn btn-warning  res" value="reset">
+      </div>
+
+   </form>
+</div>
+      
+
+    
+  </div>
+  </div>
+ 
+
+
+   
+   <!-- <div class="col-sm-9" *ngIf="value">
+    <div class="row">
+      <diV class=col-sm-4>
+          
+      </diV>
+      <div class="col-sm-8 " >
+        <p>{{singleJobAndCand | json}}</p>
+        <div class="caninfo" *ngIf="value2"> -->
+          <!-- <p>{{singleJobAndCand.candidateEmail}}</p>
+          <p>Previous Details</p>
+          <table class="table formarea" id="myTable" *ngIf="valPrevRes">
+              <thead>
+                  <th>RoundNo</th>
+                  <th>IEmail</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Response</th>
+                </thead>
+              <tbody>
+                    <tr *ngFor="let data of previousResponse">
+                      <td>{{data.round}}</td>
+                      <td>{{data.interviewerEmail}}</td>
+                      <td>{{data.date}}</td>
+                      <td>{{data.time}}</td>
+                      <td>{{data.response}}</td>
+                    </tr>
+                  </tbody>
+          </table> 
+          
+          <p *ngIf="!valPrevRes">This candidate is new</p>
+          <p>RecentInfo</p>
+          <table class="table formarea" id="myTable" *ngIf="valRecRes">
+              <thead>
+                  <th>RoundNo</th>
+                  <th>IEmail</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                  <th>Response</th>
+                </thead>
+                
+              <tbody>
+                    <tr *ngFor="let data of recentResponse">
+                      <td>{{data.round}}</td>
+                      <td>{{data.interviewerEmail}}</td>
+                      <td>{{data.date}}</td>
+                      <td>{{data.time}}</td>
+                      <td>{{data.response}}</td>
+                    </tr>
+                  </tbody>
+          </table> 
+          <p *ngIf="!valRecRes">This candidate has no recent response</p>
+          <input type="button" value="assign" (click)="assign(singleJobAndCand)" class="btn">
+          <input type="button" value="select" (click)="select(singleJobAndCand)" class="btn btn-success">
+          <input type="button" value="reject" (click)="reject(singleJobAndCand)" class="btn btn-danger">
+  
+        </div> -->
+                 <!-- CODE FOR SHOWING ASSIGN INTERVIEWER FIELDS -->
+   <!-- <div class="container formarea" *ngIf="assigntableshow">
+    <form [formGroup]="rForm" class="form" (ngSubmit)="addPost(rForm.value)">
+        <div class="form-group middle">
+         <h4><b> Assign Interviewer</b></h4>
+        </div>
+         <div class="form-group">
+           <div class="row">
+             <div class="col-sm-6">
+                <label class="labels">Select Role</label>
+                <select class="form-control" id="interviewer_email"(change)="getInterviewerByRole($event)" formControlName="interviewer_role">
+                <option *ngFor="let data of uniqueRole"[value]="data">{{data}}</option>
+                </select>
+             </div>
+             <div class="col-sm-6">
+                <label class="labels">Select Interviewer</label>
+                <select class="form-control" id="interviewer_email" formControlName="interviewer_email">
+                <option *ngFor="let data of InterviewerByRole"[value]="data.email">{{data.email}}</option>
+                </select>
+                <div class="alert alert-danger" *ngIf="!rForm.controls['interviewer_email'].valid && rForm.controls['interviewer_email'].touched">This
+                            is required!
+                </div>
+             </div>
+           </div>
+            
+        </div>
+        <div  class="form-group">  
+            <label class="labels">Scheduled Date & Time</label>
+            <div class="row">
+                    <div class="col-md-6">
+                        <input type="date" formControlName="date" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                            <input type="time" formControlName="time" class="form-control">
+                     </div>
+             </div>
+            <div class="alert alert-danger" *ngIf="!rForm.controls['time'].valid && rForm.controls['time'].touched && 
+            !rForm.controls['date'].valid && rForm.controls['date'].touched">This
+                        is required!
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-submit " value="submit"
+                     [disabled]="!rForm.valid"
+                    [class.disablepointer]="!rForm.valid">
+        </div>
+        <div class="form-group">
+            <input type="reset" class="btn btn-warning  res" value="reset">
+        </div>
+
+     </form>
+</div>
+        
+
+      </div>
+
+
+
+    </div>
+      
+   </div>
+
+  
+  
+  </div>
+</div> --> 

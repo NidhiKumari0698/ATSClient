@@ -1,0 +1,42 @@
+<div class="container wrapper">
+  <form [formGroup]="homeForm" (ngSubmit)="onSubmit(homeForm.value)">
+    <div class="form-group">
+      <label>Email:</label>
+      <input type="email" [class.is-invalid]="homeForm.controls['email'].invalid &&
+       homeForm.controls['email'].touched"
+        formControlName="email" class="form-control" />
+      <div *ngIf="homeForm.controls['email'].invalid 
+       && homeForm.controls['email'].touched">
+        <small *ngIf="homeForm.controls['email'].errors?.required" class="text-danger">
+          email is required</small>
+        <small *ngIf="homeForm.controls['email'].errors?.email" class="text-danger">
+          invalid format</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="password" [class.is-invalid]="homeForm.controls['password'].invalid &&
+       homeForm.controls['password'].touched"
+        formControlName="password" class="form-control" />
+      <div *ngIf="homeForm.controls['password'].invalid 
+       && homeForm.controls['password'].touched">
+        <small *ngIf="homeForm.controls['password'].errors?.required" class="text-danger">
+          password is required</small>
+        <small *ngIf="homeForm.controls['password'].errors?.minlength" class="text-danger">
+          min eight characters
+        </small>
+      </div>
+    </div>
+    <div class="form-group">
+    <input type="submit" class="btn btn-submit" value="submit" [disabled]="!homeForm.valid" [class.disablepointer]="!homeForm.valid" />
+    </div>
+    <!-- <a routerLink="/upload-resume-new"><button class="btn btn-success pull-right" > 
+        signup</button></a> -->
+
+  </form>
+  <div class="candidateReg">
+    <a routerLink="/jobs">signup as candidate</a>
+  </div>
+  
+
+</div>

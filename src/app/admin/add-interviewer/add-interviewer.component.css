@@ -1,0 +1,22 @@
+.upperdiv
+{
+    border: 1px solid #2695A5;
+    width: 100%;
+    border-radius:15px;
+    padding: 3%;
+}
+.btn-submit{
+    width:30%;
+    margin-left:35%;
+    background-color: #2695A5;
+    color: white;
+}
+.middle{
+    width: 100%;
+    text-align: center;
+    color:#2695A5;;
+}
+label
+{
+    color: #2695A5;
+}

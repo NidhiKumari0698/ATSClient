@@ -1,0 +1,40 @@
+.upperdiv
+{
+    border: 1px solid #2695A5;
+    border-radius:15px;
+    padding: 3%;
+    width:60%;
+    height:50%;
+}
+
+.middle{
+    width: 100%;
+    text-align: center;
+    color:black;
+    text-decoration: underline;
+}
+label
+{
+    color: #2695A5;;
+}
+.btn-submit{
+    
+    background-color: #2695A5;
+    color: white;
+
+}
+.res{
+
+background-color:coral;
+color: white;
+}
+.divmiddle{
+    text-align: center;
+}
+.details{
+    border: 1px solid black;
+    border-radius:15px;
+    padding: 3%;
+}
+
+ 

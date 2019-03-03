@@ -1,0 +1,51 @@
+<div class="border border-dark table-responsive upperdiv">
+  <div *ngIf="!showtable"><h1>No Candidate is assigned to u yet!</h1></div>
+    <table class="table" id="myTable" *ngIf="showtable">
+        <thead>
+            <th>Interviewer_Email</th>
+            <th>JobPost</th>
+            <th>Candidate_Email</th>
+            <th>Resume</th>
+            <th>Video</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>RoundNo</th>
+            <th>Response</th>
+            <th>Selected</th>
+            <!-- <th>Rejected</th> -->
+            <!-- <th>Delete</th> -->
+          </thead>
+        
+          <tbody>
+              <tr *ngFor="let data of data_for_given_email">
+                <td>{{data.interviewer_email}}</td>
+                <td>{{data.jobPostingTitle}}</td>
+                <td>{{data.candidate_email}}</td>
+                <td><button class="btn resumebutton"  (click)="showresume(data.resume)">resume</button></td>
+                <td><button class="btn videobutton" (click)="showvideo(data.video)">Introductory video</button></td>
+                <td>{{data.date}}</td>
+                <td>{{data.time}}</td>
+                <td>{{data.round}}</td>
+                <td><input type="text" [(ngModel)]="data.response" class="form-control" /></td>
+                <td><input type="button"  class="btn btn-success" (click)="selected(data)" value="Selected"></td>
+                <!-- <td><input type="button" class="btn btn-danger" (click)="rejected(data)" value="Rejected"></td> -->
+              </tr>
+            </tbody>
+    </table> 
+    </div>
+    <div class="container seconddiv" *ngIf="showtable && showdiv">
+      <div  class="a"  *ngIf="activeVideo">
+        <video controls>
+            <source src={{videopath}} type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+        <div class="b" *ngIf="activeResume">
+            <iframe [src]="resumepath | safe">
+    
+            </iframe>
+        </div>
+    </div>
+
+    
+   

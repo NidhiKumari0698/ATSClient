@@ -1,0 +1,55 @@
+ <!-- <option *ngFor="let candidate_email of candidates" 
+                        [value]="candidate_email.id">{{candidate_email.name}}</option> -->
+ <!-- <option *ngFor="let interviewer_email of interviewer"
+                         [value]="interviewer_email.id">{{interviewer_email.name}}</option> -->
+<div class="container formarea">
+    <form [formGroup]="rForm" class="form" (ngSubmit)="addPost(rForm.value)">
+        <div class="form-group middle">
+         <h4><b> Assign Interviewer</b></h4>
+        </div>
+        <div  class="form-group">
+            <label>Select Candidate</label>
+            
+            <select class="form-control" id="candidate_email" formControlName="candidate_email">
+                <option *ngFor="let candidate_email of candidate_email_data" [value]="candidate_email">{{candidate_email}}</option>
+              </select>
+            <div class="alert alert-danger" *ngIf="!rForm.controls['candidate_email'].valid && rForm.controls['candidate_email'].touched">This
+                        is required!
+            </div>
+        </div>
+        <div  class="form-group">
+            <label class="labels">Select Interviewer</label>
+            <select class="form-control" id="interviewer_email" formControlName="interviewer_email">
+            <option *ngFor="let interviewer_email of interviewer_email_data"[value]="interviewer_email">{{interviewer_email}}</option>
+            </select>
+            <div class="alert alert-danger" *ngIf="!rForm.controls['interviewer_email'].valid && rForm.controls['interviewer_email'].touched">This
+                        is required!
+            </div>
+        </div>
+        <div  class="form-group">  
+            <label class="labels">Scheduled Date & Time</label>
+            <div class="row">
+                    <div class="col-md-6">
+                        <input type="date" formControlName="date" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                            <input type="time" formControlName="time" class="form-control">
+                     </div>
+             </div>
+            <div class="alert alert-danger" *ngIf="!rForm.controls['time'].valid && rForm.controls['time'].touched && 
+            !rForm.controls['date'].valid && rForm.controls['date'].touched">This
+                        is required!
+            </div>
+        </div>
+        <div class="form-group">
+            <input type="submit" class="btn btn-submit " value="submit"
+                     [disabled]="!rForm.valid"
+                    [class.disablepointer]="!rForm.valid">
+        </div>
+        <div class="form-group">
+            <input type="reset" class="btn btn-warning  res" value="reset">
+        </div>
+
+     </form>
+</div>
+

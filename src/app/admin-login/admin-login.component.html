@@ -1,0 +1,33 @@
+<div class="container">
+        <div class="row">
+          <div class="col-sm-3">
+            <div class="sidebar-nav">
+              <div class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <span class="visible-xs navbar-brand">menu</span>
+                </div>
+                <div class="navbar-collapse collapse sidebar-navbar-collapse">
+                  <ul class="nav navbar-nav">
+                    <li><a [routerLink]="['/admin-login/add-job']"[class.active]="isSelectedAddJob" (click)="clickedAddJob()">Add Job</a></li>
+                    <li><a [routerLink]="['/admin-login/add-interviewer']"[class.active]="isSelectedAdd" (click)="clickedAdd()">Add Interviewer</a></li>
+                    <li><a [routerLink]="['/admin-login/schedule-candidate']"[class.active]="isSelectedAssign"(click)="clickedAssign()" >Schedule Interview</a></li>
+                    <li><a [routerLink]="['/admin-login/track-status']" [class.active]="isSelectedStatus" (click)="clickedStatus()">Track status</a></li>
+                    <li><a [routerLink]="['/home']"[class.active]="isSelectedLogout"(click)="logout()"  >logout</a></li>
+                    
+                  </ul>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+          <div class="col-sm-9">
+            <router-outlet></router-outlet>
+          </div>
+        </div>
+      </div>

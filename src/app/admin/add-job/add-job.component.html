@@ -1,0 +1,61 @@
+<!-- <h1>{{addJobForm.value | json}}</h1> -->
+<div class="container-fluid upperdiv">
+  <form [formGroup]="addJobForm" (ngSubmit)="onSubmit(addJobForm.value)">
+      <div class="form-group middle">
+          <h2>Add Job</h2>
+      </div>
+      <div class="form-group">
+          <label>Posting Title:</label>
+        <input type="text" formControlName="posting_title"  class="form-control" />
+       </div>
+       <div class="form-group">
+          <label>Location:</label>
+          <div class="row details">
+            <div class="col-sm-4">
+              <p>city</p>
+                <input type="text" formControlName="city"  class="form-control" />
+            </div>
+            <div class="col-sm-4">
+                <p>state</p>
+                  <input type="text" formControlName="state"  class="form-control" />
+              </div>
+              <div class="col-sm-4">
+                  <p>country</p>
+                    <input type="text" formControlName="country"  class="form-control" />
+                </div>
+          </div>
+        </div>
+       <div class="form-group">
+         <div class="row details">
+<div class="col-sm-6">
+    <label>Date Opened:</label>
+    <input type="date" formControlName="date_open"  class="form-control" />
+</div>
+<div class="col-sm-6">
+    <label>Date Closed:</label>
+    <input type="date" formControlName="date_close"  class="form-control" />
+</div>
+  </div>
+         </div>
+         <div class="form-group">
+            <label>Job Type:</label>
+          <input type="text" formControlName="job_type"  class="form-control"/>
+         </div> 
+         <div class="form-group">
+            <label>Salary:</label>
+          <input type="text" formControlName="salary"  class="form-control"/>
+         </div>  
+         <div class="form-group">
+            <label>Position Sumarry:</label>
+          <input type="textarea" formControlName="position_summary"  class="form-control"/>
+         </div>  
+         <div class="form-group">
+            <label>Job Responsibility:</label>
+          <input type="textarea" formControlName="job_respo"  class="form-control"/>
+         </div> 
+     <input type="submit" class="btn btn-submit" value="submit"[disabled]="!addJobForm.valid"
+       [class.disablepointer]="!addJobForm.valid"  />
+      
+    </form>
+    <p>{{addJobForm.value | json}}</p>
+  </div>

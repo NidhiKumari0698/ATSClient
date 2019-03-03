@@ -1,0 +1,69 @@
+
+<div class="container ">
+  <div class="row">
+      <div class="col-sm-6">
+          <ul *ngFor="let data of get_candidate_jobs">
+              <li (click)="getStatus(data)">{{data.jobPostingTitle}}</li>
+           </ul>
+        </div>
+        <div class="col-sm-6">
+          <h1 *ngIf="selectedCandidate">Congratulations! You got Selected</h1>
+          <h1 *ngIf="rejectedCandidate">Sorry your candidature is not found suitable for this job</h1>
+          <h1 *ngIf="pendingCandidate">Your Result is not declared yet</h1>
+          <h1 *ngIf="assignedCandidate">Your Interview has assigned </h1>
+          
+          <div class="border border-dark table-responsive">
+              <table class="table" id="myTable" *ngIf="showTable">
+                  <thead>
+                    <th>Round</th>
+                      <th>Interviewer_Email</th>
+                      <th>Date</th>
+                      <th>Time</th>
+                      <th>Response</th>
+                  </thead>
+                  <tbody>
+                        <tr *ngFor="let data of arr">
+                          <td>{{data.round}}</td>
+                          <td>{{data.interviewerEmail}}</td>
+                          <td>{{data.date}}</td>
+                          <td>{{data.time}}</td>
+                          <td>{{data.response}}</td>
+                          
+                        </tr>
+                      </tbody>
+              </table> 
+              <div *ngIf="history">
+                 <h3>No History so far</h3>
+              </div>
+              </div>
+          
+          </div>
+  </div>
+</div>
+<!-- <div class="container-fluid upperdiv">
+    <div class="border border-dark table-responsive">
+        <table class="table" id="myTable">
+            <thead>
+                <th>Candidate_Name</th>
+                <th>Interviewer_Email</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Selected?</th>
+                
+              </thead>
+            
+              <tbody>
+                  <tr *ngFor="let data of given_candidate_data">
+                    <td>{{data.candidate_email}}</td>
+                    <td>{{data.interviewer_email}}</td>
+                    <td>{{data.date}}</td>
+                    <td>{{data.time}}</td>
+                    <td>{{data.selected}}</td>
+                    
+                  </tr>
+                </tbody>
+        </table> 
+        </div>
+    
+
+</div> -->

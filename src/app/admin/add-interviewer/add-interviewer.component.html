@@ -1,0 +1,55 @@
+<!-- <h1>{{addInterviewerForm.value | json}}</h1> -->
+<div class="container-fluid upperdiv">
+ <form [formGroup]="addInterviewerForm" (ngSubmit)="onSubmit(addInterviewerForm.value)">
+    <div class="form-group middle">
+        <h2>Add Interviewer</h2>
+    </div>
+    <div class="form-group">
+        <label>Email:</label>
+      <input type="email"[class.is-invalid]="addInterviewerForm.controls['email'].invalid &&
+      addInterviewerForm.controls['email'].touched"  formControlName="email"  class="form-control" />
+      <div *ngIf="addInterviewerForm.controls['email'].invalid 
+      && addInterviewerForm.controls['email'].touched">
+        <small *ngIf="addInterviewerForm.controls['email'].errors?.required" class="text-danger">
+          email is required</small>
+        <small *ngIf="addInterviewerForm.controls['email'].errors?.email" class="text-danger">
+          invalid format</small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Password:</label>
+      <input type="password" [class.is-invalid]="addInterviewerForm.controls['password'].invalid &&
+      addInterviewerForm.controls['password'].touched"
+      formControlName="password"  class="form-control" />
+      <div *ngIf="addInterviewerForm.controls['password'].invalid 
+      && addInterviewerForm.controls['password'].touched">
+        <small *ngIf="addInterviewerForm.controls['password'].errors?.required" class="text-danger">
+          password is required</small>
+        <small *ngIf="addInterviewerForm.controls['password'].errors?.minlength" class="text-danger">
+          min eight characters
+             </small>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Role:</label>
+      <input type="text" [class.is-invalid]="addInterviewerForm.controls['role'].invalid &&
+      addInterviewerForm.controls['role'].touched" formControlName="role"  class="form-control" />
+      <div *ngIf="addInterviewerForm.controls['role'].invalid 
+      && addInterviewerForm.controls['role'].touched">
+        <small *ngIf="addInterviewerForm.controls['role'].errors?.required" class="text-danger">
+          role is required</small>
+        <small *ngIf="addInterviewerForm.controls['role'].errors?.pattern" class="text-danger">
+            invalid format</small>
+      </div>
+
+    </div>
+    <div class="form-group">
+    <label>Mobile</label>
+    <input type="number" formControlName="mobile" class="form-control">
+    </div>
+    <input type="submit" class="btn btn-submit" value="submit"[disabled]="!addInterviewerForm.valid"
+     [class.disablepointer]="!addInterviewerForm.valid"  />
+    <!-- <input type="button" (click)="a()" value="abc"> -->
+  </form>
+
+</div>

@@ -1,0 +1,363 @@
+<div class="container upperdiv">
+  <form [formGroup]="candidateForm" (ngSubmit)="onSubmit(candidateForm.value)">
+    <div class="form-group middle">
+      <h4><b>Registration Form</b></h4>
+    </div>
+    <div class="details">
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>FirstName</label>
+            <input type="text" [class.is-invalid]="candidateForm.controls['firstname'].invalid && candidateForm.controls['firstname'].touched" formControlName="firstname"
+              class="form-control" />
+            <div *ngIf="candidateForm.controls['firstname'].invalid 
+                      && candidateForm.controls['firstname'].touched">
+              <small *ngIf="candidateForm.controls['firstname'].errors?.required" class="text-danger">
+                firstname is required</small>
+              <small *ngIf="candidateForm.controls['firstname'].errors?.pattern" class="text-danger">
+                invalid format</small>
+            </div>
+          </div>
+          <div class="col-sm-6">
+           <label>LastName</label>
+           <input type="text" [class.is-invalid]="candidateForm.controls['lastname'].invalid &&
+            candidateForm.controls['lastname'].touched " formControlName="lastname" class="form-control">
+            <div *ngIf="candidateForm.controls['lastname'].invalid 
+                        && candidateForm.controls['lastname'].touched">
+              <small *ngIf="candidateForm.controls['lastname'].errors?.required" class="text-danger">
+                lastname is required</small>
+              <small *ngIf="candidateForm.controls['lastname'].errors?.pattern" class="text-danger">
+                invalid format</small>
+            </div>
+             </div>
+         
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>Email:</label>
+            <input type="email" [class.is-invalid]="candidateForm.controls['email'].invalid &&
+                      candidateForm.controls['email'].touched" formControlName="email" class="form-control" />
+            <small *ngIf="emailExistant" class="text-danger">Already Taken</small>
+            <div *ngIf="candidateForm.controls['email'].invalid && candidateForm.controls['email'].touched">
+              <small *ngIf="candidateForm.controls['email'].errors?.required" class="text-danger">
+                email is required</small>
+              <small *ngIf="candidateForm.controls['email'].errors?.email" class="text-danger">
+                invalid format</small>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <label>Password:</label>
+            <input type="password" [class.is-invalid]="candidateForm.controls['password'].invalid &&
+                      candidateForm.controls['password'].touched" formControlName="password"
+              class="form-control" />
+            <div *ngIf="candidateForm.controls['password'].invalid 
+                      && candidateForm.controls['password'].touched">
+              <small *ngIf="candidateForm.controls['password'].errors?.required" class="text-danger">
+                password is required</small>
+              <small *ngIf="candidateForm.controls['password'].errors?.minlength" class="text-danger">
+                invalid format</small>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>Mobile:</label>
+            <input type="number" [class.is-invalid]="candidateForm.controls['mobile'].invalid &&
+                    candidateForm.controls['mobile'].touched" formControlName="mobile" class="form-control" />
+            <div *ngIf="candidateForm.controls['mobile'].invalid 
+                    && candidateForm.controls['mobile'].touched">
+              <small *ngIf="candidateForm.controls['mobile'].errors?.required" class="text-danger">
+                mobile is required</small>
+              <small *ngIf="candidateForm.controls['mobile'].errors?.pattern" class="text-danger">
+                invalid format</small>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <label>OTP:</label>
+            <input type="number" formControlName="otp" class="form-control" />
+          </div>
+        </div>
+      </div>
+    </div><br>
+
+    <div class="form-group">
+      <label>What is your current employment status</label><br>
+      <input type="radio" firstname="status" value="employed"> Employed<br>
+      <input type="radio" firstname="status" value="selfemployed"> Self-Employed<br>
+      <input type="radio" firstname="status" value="unemployed"> Unemployed<br>
+      <input type="radio" firstname="status" value="student">Student<br>
+    </div>
+    <div class="form-group">
+      <label>Work Experience</label>
+      <div class="details">
+        <div class="row">
+          <div class="col-sm-6">
+            <label>prev_company</label>
+            <input type="text" formControlName="prev_comp" class="form-control" placeholder="infosys" />
+          </div>
+          <div class="col-sm-6">
+            <label>prev_salary</label>
+            <input type="text" formControlName="prev_sal" class="form-control" placeholder="5LPA" />
+          </div>
+        </div>
+
+        <div>
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>year:</label>
+                <input type="number" [class.is-invalid]="candidateForm.controls['exp_year'].invalid &&
+                              candidateForm.controls['exp_year'].touched" formControlName="exp_year"
+                  class="form-control" />
+                <div *ngIf="candidateForm.controls['exp_year'].invalid 
+                              && candidateForm.controls['exp_year'].touched">
+                  <small *ngIf="candidateForm.controls['exp_year'].errors?.required" class="text-danger">
+                    year is required</small>
+                  <small *ngIf="candidateForm.controls['exp_year'].errors?.pattern" class="text-danger">
+                    invalid format</small>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>month:</label>
+                <input type="number" [class.is-invalid]="candidateForm.controls['exp_month'].invalid &&
+                              candidateForm.controls['exp_month'].touched" formControlName="exp_month"
+                  class="form-control" />
+                <div
+                  *ngIf="candidateForm.controls['exp_month'].invalid && candidateForm.controls['exp_month'].touched">
+                  <small *ngIf="candidateForm.controls['exp_month'].errors?.required" class="text-danger">
+                    month is required</small>
+                  <small *ngIf="candidateForm.controls['exp_month'].errors?.min" class="text-danger">
+                    invalid format</small>
+                  <small *ngIf="candidateForm.controls['exp_month'].errors?.max" class="text-danger">
+                    invalid format</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Would you like to list reference</label><br>
+      <input type="radio" firstname="status" value="yes"> Yes<br>
+      <input type="radio" firstname="status" value="no"> No<br>
+    </div>
+    <div class="form-group">
+      <label>Reference Details</label>
+      <div class="details">
+        <div>
+          <div class="row">
+            <div class="col-sm-6">
+              <label>Name</label>
+              <input type="text" formControlName="refname" class="form-control" placeholder="" />
+            </div>
+            <div class="col-sm-6">
+              <label>Email</label>
+              <input type="text" formControlName="refemail" class="form-control" placeholder="" />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-sm-6">
+              <label>Relation</label>
+              <input type="text" formControlName="refrelation" class="form-control" placeholder="" />
+            </div>
+            <div class="col-sm-6">
+              <label>Mobile</label>
+              <input type="number" formControlName="refmobile" class="form-control" placeholder="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Address</label>
+      <div class="details">
+        <div>
+          <div class="row">
+            <div class="col-sm-6">
+              <label>City</label>
+              <input type="text" formControlName="city" class="form-control" placeholder="" />
+            </div>
+            <div class="col-sm-6">
+              <label>State</label>
+              <input type="text" formControlName="state" class="form-control" placeholder="" />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="row">
+            <div class="col-sm-6">
+              <label>Postal Code</label>
+              <input type="text" formControlName="postalcode" class="form-control" placeholder="" />
+            </div>
+            <div class="col-sm-6">
+              <label>Country</label>
+              <input type="text" formControlName="country" class="form-control" placeholder="" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Upload Resume</label>
+      <input type="file" (change)="fileChange1($event)" accept=".pdf,.txt,.doc" class="form-control">
+    </div>
+    <div class="form-group">
+      <label>Upload Video</label>
+      <input type="file" (change)="fileChange2($event)" accept=".mp4,video" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label>Academic Background</label>
+        <div class="details">
+          <p>HighSchool</p>
+          <div class="row">
+            <div class="col-sm-6">
+              <label>PassYear</label>
+              <input type="text" formControlName="hyear" class="form-control" placeholder="" />
+            </div>
+            <div class="col-sm-6">
+              <label>Board</label>
+              <input type="text" formControlName="hboard" class="form-control" placeholder="" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <label>CollegeSchool</label>
+              <input type="text" formControlName="hschool" class="form-control" placeholder="" />
+            </div>
+            <div class="col-sm-6">
+              <label>Percentage</label>
+              <input type="text" formControlName="hpercentage" class="form-control" placeholder="" />
+            </div>
+          </div>
+        </div><br>
+        <div class="details">
+          <p>Intermediate</p>
+          <div class="row">
+            <div class="col-sm-6">
+              <label>Year</label>
+              <input type="text" formControlName="iyear" class="form-control" placeholder="" />
+            </div>
+            <div class="col-sm-6">
+              <label>Board</label>
+              <input type="text" formControlName="iboard" class="form-control" placeholder="" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <label>College/School</label>
+              <input type="text" formControlName="ischool" class="form-control" placeholder="" />
+            </div>
+            <div class="col-sm-6">
+              <label>Percentage</label>
+              <input type="text" formControlName="ipercentage" class="form-control" placeholder="" />
+            </div>
+          </div>
+        </div><br>
+        <div class="details">
+          <p>Graduation</p>
+          <div class="row">
+            <div class="col-sm-6">
+              <label>Year</label>
+              <input type="text" formControlName="gyear" class="form-control" placeholder="" />
+            </div>
+            <div class="col-sm-6">
+              <label>Course/Degree</label>
+              <input type="text" formControlName="gcourse" class="form-control" placeholder="" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <label>College/Institute</label>
+              <input type="text" formControlName="gcollege" class="form-control" placeholder="" />
+            </div>
+            <div class="col-sm-6">
+              <label>University</label>
+              <input type="text" formControlName="guniversity" class="form-control" placeholder="" />
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6">
+              <label>Stream</label>
+              <input type="text" formControlName="gstream" class="form-control" placeholder="" />
+            </div>
+            <div class="col-sm-6">
+              <label>CGPA</label>
+              <input type="text" formControlName="gcgpa" class="form-control" placeholder="" />
+            </div>
+          </div>
+        </div>
+        <div class="details">
+            <p>Others</p>
+            <div class="row">
+              <div class="col-sm-6">
+                <label>Year</label>
+                <input type="text" formControlName="oyear" class="form-control" placeholder="" />
+              </div>
+              <div class="col-sm-6">
+                <label>Course/Degree</label>
+                <input type="text" formControlName="ocourse" class="form-control" placeholder="" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <label>College/Institute</label>
+                <input type="text" formControlName="ocollege" class="form-control" placeholder="" />
+              </div>
+              <div class="col-sm-6">
+                <label>University</label>
+                <input type="text" formControlName="ouniversity" class="form-control" placeholder="" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-6">
+                <label>Stream</label>
+                <input type="text" formControlName="ostream" class="form-control" placeholder="" />
+              </div>
+              <div class="col-sm-6">
+                <label>CGPA</label>
+                <input type="text" formControlName="ocgpa" class="form-control" placeholder="" />
+              </div>
+            </div>
+          </div>
+      </div> 
+    
+    <div class="form-group divmiddle">
+      <input type="submit" class="btn btn-submit" value="submit" [disabled]="candidateForm.invalid||emailExistant"
+        [class.disablepointer]="!candidateForm.valid" />
+      <input type="reset" class="btn res" />
+    </div>
+    <div class="form-group divmiddle">
+      <a routerLink="/home">Logout</a></div>
+    <p>this is:{{candidateForm.valid}}--{{emailExistant}}</p>
+  </form>
+  <h5>{{candidateForm.value |json}}</h5>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

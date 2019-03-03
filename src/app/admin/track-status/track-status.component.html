@@ -1,0 +1,106 @@
+ <div class="container border border-dark table-responsive upperdiv">
+   <div>
+    <table class="table" id="myTable" *ngIf="table_with_result_yes">
+        <thead>
+            <th>Candidate_Email</th>
+            <th>Interviewer_Email</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Selected?</th>
+          </thead>
+        
+          <tbody>
+              <tr *ngFor="let data of given_candidate_data_with_result_yes">
+                <td>{{data.candidate_email}}</td>
+                <td>{{data.interviewer_email}}</td>
+                <td>{{data.date}}</td>
+                <td>{{data.time}}</td>
+                <td>{{data.selected}}</td>
+              </tr>
+            </tbody>
+    </table> 
+    </div>
+    <div>
+        <table class="table" id="myTable" *ngIf="table_with_result_no">
+            <thead>
+                <th>Candidate_Email</th>
+                <th>Interviewer_Email</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Selected?</th>
+              </thead>
+            
+              <tbody>
+                  <tr *ngFor="let data of given_candidate_data_with_result_no">
+                    <td>{{data.candidate_email}}</td>
+                    <td>{{data.interviewer_email}}</td>
+                    <td>{{data.date}}</td>
+                    <td>{{data.time}}</td>
+                    <td>{{data.selected}}</td>
+                  </tr>
+                </tbody>
+        </table> 
+        </div>
+    <div>
+        <table class="table" id="myTable" *ngIf="table_with_assigned">
+            <thead>
+                <th>Candidate_Email</th>
+                <th>Interviewer_Email</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Selected?</th>
+              </thead>
+            
+              <tbody>
+                  <tr *ngFor="let data of given_candidate_data_with_assigned">
+                    <td>{{data.candidate_email}}</td>
+                    <td>{{data.interviewer_email}}</td>
+                    <td>{{data.date}}</td>
+                    <td>{{data.time}}</td>
+                    <td>{{data.selected}}</td>
+                  </tr>
+                </tbody>
+        </table> 
+    </div>
+    <div>
+        <table class="table" id="myTable" *ngIf="table_without_assigned">
+            <thead>
+                <th>Candidate_Email</th>
+                <th>Interviewer_Email</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Selected?</th>
+              </thead>
+            
+              <tbody>
+                  <tr *ngFor="let data of given_candidate_data_without_assigned">
+                    <td>{{data.candidate_email}}</td>
+                    <td>{{data.interviewer_email}}</td>
+                    <td>{{data.date}}</td>
+                    <td>{{data.time}}</td>
+                    <td>{{data.selected}}</td>
+                  </tr>
+                </tbody>
+        </table> 
+    </div>
+    </div>
+<div>
+  <!-- <p>{{upload_resume_data |json}}</p> -->
+</div>
+<!-- <table>
+    <thead>
+      <th>Candidate_Name</th>
+      <th>Interviewer_Email</th>
+      <th>Date</th>
+      <th>Time</th>
+    </thead>
+  
+    <tbody>
+      <tr *ngFor="let data of track_status_data">
+        <td>{{data.candidate_name}}</td>
+        <td>{{data.interviewer_email}}</td>
+        <td>{{data.date}}</td>
+        <td>{{data.time}}</td>
+      </tr>
+    </tbody>
+  </table> -->

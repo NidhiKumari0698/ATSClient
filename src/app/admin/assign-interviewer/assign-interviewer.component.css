@@ -1,0 +1,28 @@
+.formarea{
+    border: 1px solid#2695A5;
+    border-radius: 15px;
+    padding: 3%;
+    width: 100%;
+    
+}
+label{
+    color:#2695A5;
+}
+.btn-submit{
+    background-color:#2695A5;
+    width: 100%;
+    color: white;
+
+}.middle
+{
+    color: #2695A5;
+    text-align: center;
+
+}
+.res
+{
+    width:30%;
+    margin-left: 35%;
+}
+
+
